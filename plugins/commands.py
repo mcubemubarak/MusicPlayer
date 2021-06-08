@@ -29,7 +29,7 @@ HELP = """
 
 <b>Add the bot and User account in your Group with admin rights.
 
-Start a VoiceChat
+Start a VoiceChat 🅼🅲🆄🅱🅴🅼🅴🅳🅸🅰
 
 Use /play <song name> or use /play as a reply to an audio file or youtube link.
 
