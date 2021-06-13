@@ -142,7 +142,13 @@ async def yplay(_, message: Message):
             results = YoutubeSearch(ytquery, max_results=1).to_dict()
             url = f"https://youtube.com{results[0]['url_suffix']}"
             title = results[0]["title"][:40]
-            duration = results[0]["duration"]
+            ydl_opts = {
+                "geo-bypass": True,
+                "nocheckcertificate": True
+            }
+            ydl = YoutubeDL(ydl_opts)
+            info = ydl.extract_info(url, False)
+            duration = round(info["duration"] / 60)
         except Exception as e:
             await msg.edit(
                 "Song not found.\nTry inline mode.."
