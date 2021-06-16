@@ -62,7 +62,7 @@ bot.send(
             ),
             types.BotCommand(
                 command="play",
-                description="Play song from youtube/audiofile"
+                description="Play song from youtube/videofile"
             ),
             types.BotCommand(
                 command="dplay",
