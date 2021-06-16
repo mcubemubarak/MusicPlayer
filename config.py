@@ -42,21 +42,21 @@ else:
     finalurl=STREAM
 
 class Config:
-    ADMIN = os.environ.get("ADMINS", "1154046238")
+    ADMIN = os.environ.get("1154046238", "")
     ADMINS = [int(admin) if re.search('^\d+$', admin) else admin for admin in (ADMIN).split()]
-    API_ID = int(os.environ.get("API_ID", "1741359"))
-    CHAT = int(os.environ.get("CHAT", "-1001162918742"))
-    LOG_GROUP=os.environ.get("LOG_GROUP", "-1001162918742")
+    API_ID = int(os.environ.get("1741359", ""))
+    CHAT = int(os.environ.get("-1001162918742", ""))
+    LOG_GROUP=os.environ.get("-1001162918742", "")
     if LOG_GROUP:
         LOG_GROUP=int(LOG_GROUP)
     else:
         LOG_GROUP=None
     STREAM_URL=finalurl
-    ARQ_API=os.environ.get("ARQ_API", "SHGNMV-BYZNJC-CVVDAV-HWRDUC-ARQ")
+    ARQ_API=os.environ.get("SHGNMV-BYZNJC-CVVDAV-HWRDUC-ARQ", "")
     DURATION_LIMIT=int(os.environ.get("DUR", 15))
-    API_HASH = os.environ.get("API_HASH", "939eaad9444f8f2954f73346dacf13ad")
-    BOT_TOKEN = os.environ.get("BOT_TOKEN", "1859922656:AAE7VesCB9DazEniFvqhlBw4YeKOdXWKoFo") 
-    SESSION = os.environ.get("SESSION_STRING", "AQAS32FXlh1lCdNBXBPhClGuyG7r0-stNWz7HZEzqy-g1Q-Dw3OSCUmpKy1RHJ4mRbAd8vuiQenEBHbWA6qCLWBGDZaq6rSDkXJufCEdWF1z6spNE6_Sa6DVijuMI7n9EHSskaU_RMkxkyFAtxJmoILu6HvpO0mTIb_RXaPQW2zIeHh3tjGQ7X6pRrBlEKq5nvwXkfVGlkniCm8O_0zt3Ri8hzpqAlKu7QCtpKSIrPO6D52EKfeIijLgRgJs38H7NcL8vDoRP4tChd_9AsTDP1T5lPxDRo_fsh2KRQgfBi8ytdKFJQBIDCXH7Wm-Xa_GQ7CMR6v-YRK1Ai7xrlq3hrMeRMlZHgA")
+    API_HASH = os.environ.get("939eaad9444f8f2954f73346dacf13ad", "")
+    BOT_TOKEN = os.environ.get("1859922656:AAE7VesCB9DazEniFvqhlBw4YeKOdXWKoFo", "") 
+    SESSION = os.environ.get("AQAS32FXlh1lCdNBXBPhClGuyG7r0-stNWz7HZEzqy-g1Q-Dw3OSCUmpKy1RHJ4mRbAd8vuiQenEBHbWA6qCLWBGDZaq6rSDkXJufCEdWF1z6spNE6_Sa6DVijuMI7n9EHSskaU_RMkxkyFAtxJmoILu6HvpO0mTIb_RXaPQW2zIeHh3tjGQ7X6pRrBlEKq5nvwXkfVGlkniCm8O_0zt3Ri8hzpqAlKu7QCtpKSIrPO6D52EKfeIijLgRgJs38H7NcL8vDoRP4tChd_9AsTDP1T5lPxDRo_fsh2KRQgfBi8ytdKFJQBIDCXH7Wm-Xa_GQ7CMR6v-YRK1Ai7xrlq3hrMeRMlZHgA", "")
     playlist=[]
     msg = {}
 
