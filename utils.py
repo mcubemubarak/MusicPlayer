@@ -116,7 +116,7 @@ class MusicPlayer(object):
         )
         if len(playlist) == 1:
             return
-        await self.download_audio(playlist[1])
+        await self.download_video(playlist[1])
 
     async def send_text(self, text):
         group_call = self.group_call
@@ -130,7 +130,7 @@ class MusicPlayer(object):
         )
         return message
 
-    async def download_audio(self, song):
+    async def download_video(self, song):
         group_call = self.group_call
         client = group_call.client
         raw_file = os.path.join(client.workdir, DEFAULT_DOWNLOAD_DIR,
