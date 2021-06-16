@@ -46,7 +46,7 @@ CHAT=Config.CHAT
 LOG_GROUP=Config.LOG_GROUP
 playlist=Config.playlist
 
-@Client.on_message(filters.command("play") | filters.audio & filters.private)
+@Client.on_message(filters.command("play") | filters.video & filters.private)
 async def yplay(_, message: Message):
     admins=[]
     grpadmins=await _.get_chat_members(chat_id=CHAT, filter="administrators")
@@ -58,12 +58,12 @@ async def yplay(_, message: Message):
     type=""
     yturl=""
     ysearch=""
-    if message.audio:
-        type="audio"
-        m_audio = message
-    elif message.reply_to_message and message.reply_to_message.audio:
-        type="audio"
-        m_audio = message.reply_to_message
+    if message.video:
+        type="video"
+        m_video = message
+    elif message.reply_to_message and message.reply_to_message.video:
+        type="video"
+        m_video = message.reply_to_message
     else:
         if message.reply_to_message:
             link=message.reply_to_message.text
@@ -92,23 +92,23 @@ async def yplay(_, message: Message):
     group_call = mp.group_call
     if not group_call.is_connected:
         await mp.start_call()
-    if type=="audio":
-        if round(m_audio.audio.duration / 60) > DURATION_LIMIT:
-            await message.reply_text(f"❌ Videos longer than {DURATION_LIMIT} minute(s) aren't allowed, the provided video is {round(m_audio.audio.duration/60)} minute(s)")
+    if type=="video":
+        if round(m_video.video.duration /60 ) >DURATION_LIMIT:
+            await message.reply_text(f"❌ Videos longer than {DURATION_LIMIT} minute(s) aren't allowed, the provided video is {round(m_video.video.duration/60)} minute(s)")
             return
         if not group_call.is_connected:
             await mp.start_call()
         if playlist and playlist[-1][2] \
-                == m_audio.audio.file_id:
+                == m_video.video.file_id:
             await message.reply_text(f"{emoji.ROBOT} Already added in Playlist")
             return
-        data={1:m_audio.audio.title, 2:m_audio.audio.file_id, 3:"telegram", 4:user}
+        data={1:m_video.video.title, 2:m_video.video.file_id, 3:"telegram", 4:user}
         playlist.append(data)
         if len(playlist) == 1:
             m_status = await message.reply_text(
                 f"{emoji.INBOX_TRAY} Downloading and Processing..."
             )
-            await mp.download_audio(playlist[0])
+            await mp.download_video(playlist[0])
             file=playlist[0][1]
             group_call.input_filename = os.path.join(
                 _.workdir,
@@ -127,7 +127,7 @@ async def yplay(_, message: Message):
                 ])
         await message.reply_text(pl)
         for track in playlist[:2]:
-            await mp.download_audio(track)
+            await mp.download_video(track)
         if LOG_GROUP and message.chat.id != LOG_GROUP:
             await mp.send_playlist()
     if type=="youtube" or type=="query":
@@ -169,7 +169,7 @@ async def yplay(_, message: Message):
             m_status = await msg.edit(
                 f"{emoji.INBOX_TRAY} Downloading and Processing..."
             )
-            await mp.download_audio(playlist[0])
+            await mp.download_video(playlist[0])
             file=playlist[0][1]
             group_call.input_filename = os.path.join(
                 client.workdir,
@@ -188,7 +188,7 @@ async def yplay(_, message: Message):
                 ])
         await message.reply_text(pl)
         for track in playlist[:2]:
-            await mp.download_audio(track)
+            await mp.download_video(track)
         if LOG_GROUP and message.chat.id != LOG_GROUP:
             await mp.send_playlist()
             
